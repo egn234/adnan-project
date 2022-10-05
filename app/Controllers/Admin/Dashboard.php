@@ -16,7 +16,8 @@ class dashboard extends Controller
 	public function index()
 	{
 		$dataset = [
-			'title' => 'Dashboard - Admin'
+			'title' => 'Dashboard',
+			'usertype' => 'Admin'
 		];
 
 		return view('admin/dashboard', $dataset);

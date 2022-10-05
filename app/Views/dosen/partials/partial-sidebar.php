@@ -3,7 +3,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link <?=($title == 'Dashboard')?'active':''?>" href="<?= url_to('admin/dashboard') ?>">
+                            <a class="nav-link <?=($title == 'Dashboard')?'active':''?>" href="<?= url_to('dosen/dashboard') ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>

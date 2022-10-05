@@ -48,13 +48,21 @@ $routes->group('admin', static function ($routes)
 $routes->group('dekan', static function ($routes)
 {
     $routes->get('dashboard', 'Dekan\Dashboard::index');
+    $routes->get('dokumen', 'Dekan\Dokumen::index');
+    
+    $routes->add('dokumen/(:num)', 'Dekan\Dokumen::detail/$1', ['as' => 'dekan_detail_dokumen']);
+    $routes->add('dokumen/revisi/(:num)', 'Dekan\Dokumen::revisi_proc/$1', ['as' => 'dekan_pengajuan_revisi']);
+    $routes->add('dokumen/acc/(:num)', 'Dekan\Dokumen::acc_proc/$1', ['as' => 'dekan_acc_dokumen']);
 });
 
 $routes->group('dosen', static function ($routes)
 {
     $routes->get('dashboard', 'Dosen\Dashboard::index');
     $routes->get('dokumen', 'Dosen\Dokumen::index');
+
     $routes->post('dokumen/add-req', 'Dosen\Dokumen::add_proc');
+    $routes->post('dokumen/revisi-req', 'Dosen\Dokumen::revisi_proc');
+    $routes->add('dokumen/revisi-update', 'Dosen\Dokumen::revisi_update');
 });
 
 /*

@@ -17,6 +17,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4"><?=$title?></h1>
                         <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Berkas & Dokumen</li>
                             <li class="breadcrumb-item active"><?=$title?></li>
                         </ol>
 
@@ -53,9 +54,11 @@
                                                     <?php if($a->flag == 0){?>
                                                         Revisi
                                                     <?php }elseif($a->flag == 1){?>
-                                                        Sedang Direview
+                                                        Sedang direview oleh Dekan
                                                     <?php }elseif($a->flag == 2){?>
-                                                        Diterima
+                                                        Menunggu TTD Dekan 
+                                                    <?php }elseif($a->flag == 3){?>
+                                                        Telah di ACC 
                                                     <?php }?>
                                                 </td>
                                                 <td>
@@ -64,7 +67,7 @@
                                                             <span class="fa fa-file-download"></span>
                                                         </a>
                                                         <?php if ($a->flag == 0) {?>
-                                                            <a href="" class="btn btn-primary btn-sm">
+                                                            <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#revisiUpdate" data-id="<?=$a->idsurat?>">
                                                                 <span class="fa fa-edit"></span> Revisi
                                                             </a>
                                                         <?php }?>
@@ -93,6 +96,14 @@
                 </footer>
             </div>
         </div>
+
+        <div id="revisiUpdate" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <span class="fetched-data"></span>
+                </div>
+            </div>
+        </div><!-- /.modal -->
 
         <div id="addPengajuan" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -135,6 +146,19 @@
         <script type="text/javascript" src="<?=base_url()?>/assets/datatables/datatables.min.js"></script>
         <script type="text/javascript">
             $('#dataTable').DataTable();
+            $(document).ready(function() {
+                $('#revisiUpdate').on('show.bs.modal', function(e) {
+                    var rowid = $(e.relatedTarget).data('id');
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= base_url() ?>/dosen/dokumen/revisi-update',
+                        data: 'rowid=' + rowid,
+                        success: function(data) {
+                            $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                        }
+                    });
+                });
+            });
         </script>
 
     </body>

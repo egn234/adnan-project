@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?= $this->include('dosen/partials/partial-head') ?>
+    <head>
+        <?= $this->include('dosen/partials/partial-head') ?>
+    </head>
+    
     <body class="sb-nav-fixed">
         <?= $this->include('dosen/partials/partial-topbar') ?>
 

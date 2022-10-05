@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?= $this->include('admin/partials/partial-head') ?>
+    <head>
+        <?= $this->include('dekan/partials/partial-head') ?>
+    </head>
+    
     <body class="sb-nav-fixed">
-        <?= $this->include('admin/partials/partial-topbar') ?>
+        <?= $this->include('dekan/partials/partial-topbar') ?>
 
         <div id="layoutSidenav">
-            <?= $this->include('admin/partials/partial-sidebar') ?>
+            <?= $this->include('dekan/partials/partial-sidebar') ?>
 
             <div id="layoutSidenav_content">
                 <main>
@@ -577,7 +580,7 @@
             </div>
         </div>
         
-        <?= $this->include('admin/partials/partial-footer') ?>
+        <?= $this->include('dekan/partials/partial-footer') ?>
 
     </body>
 </html>
