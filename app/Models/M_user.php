@@ -76,6 +76,24 @@ class m_user extends Model
     	return $this->db->query($sql)->getResult();
     }
 
+    function getDetailDosen()
+    {
+        $sql = "
+            SELECT 
+                tb_user.*, 
+                (
+                    SELECT 
+                        count(idsurat) 
+                    FROM tb_surat 
+                    WHERE iduser_dosen = tb_user.iduser
+                ) AS jumlah_proposal 
+            FROM tb_user
+            WHERE tb_user.idgroup = 3
+        ";
+
+        return $this->db->query($sql)->getResult();
+    }
+
     function countUserByUsername($username)
     {
     	$sql = "SELECT count(iduser) as hitung FROM tb_user WHERE username = '$username'";

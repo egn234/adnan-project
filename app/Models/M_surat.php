@@ -111,6 +111,29 @@ class m_surat extends Model
       return $this->db->query($sql)->getResult();
     }
 
+    function getSuratByAcc()
+    {
+      $sql = "
+        SELECT 
+          tb_user.nama_lengkap AS nama_lengkap,
+          tb_user.nip AS nip,
+          tb_surat.*,
+          tb_kategori.idkategori AS idkategori,
+          tb_kategori.nama_kategori AS nama_kategori,
+          tb_kategori.keterangan AS keterangan,
+          tb_kategori.flag AS kategori_flag
+        FROM tb_surat
+        JOIN tb_user
+          ON tb_user.iduser = tb_surat.iduser_dosen
+        JOIN tb_kategori 
+          USING(idkategori)
+        WHERE tb_surat.flag = 2
+        ORDER BY tb_surat.tanggal_upload DESC
+      ";
+
+      return $this->db->query($sql)->getResult();
+    }
+
     function insertSurat($data)
     {
       $builder = $this->db->table('tb_surat');

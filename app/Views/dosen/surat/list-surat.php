@@ -63,8 +63,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-group d-flex align-items-center">
-                                                        <a href="<?= base_url() ?>/uploads/user/<?=$duser->username?>/doc/<?=$a->file_dosen?>" class="btn btn-secondary btn-sm" download="<?=$a->file_dosen?>">
-                                                            <span class="fa fa-file-download"></span>
+                                                        <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailSurat" data-id="<?=$a->idsurat?>">
+                                                            <span class="fa fa-search"></span> Detail
                                                         </a>
                                                         <?php if ($a->flag == 0) {?>
                                                             <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#revisiUpdate" data-id="<?=$a->idsurat?>">
@@ -96,6 +96,14 @@
                 </footer>
             </div>
         </div>
+
+        <div id="detailSurat" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <span class="fetched-data"></span>
+                </div>
+            </div>
+        </div><!-- /.modal -->
 
         <div id="revisiUpdate" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -152,6 +160,17 @@
                     $.ajax({
                         type: 'POST',
                         url: '<?= base_url() ?>/dosen/dokumen/revisi-update',
+                        data: 'rowid=' + rowid,
+                        success: function(data) {
+                            $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                        }
+                    });
+                });
+                $('#detailSurat').on('show.bs.modal', function(e) {
+                    var rowid = $(e.relatedTarget).data('id');
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= base_url() ?>/dosen/dokumen/detail-surat',
                         data: 'rowid=' + rowid,
                         success: function(data) {
                             $('.fetched-data').html(data); //menampilkan data ke dalam modal

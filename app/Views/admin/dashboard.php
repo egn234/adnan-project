@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <?= $this->include('admin/partials/partial-head') ?>
+        <link rel="stylesheet" type="text/css" href="<?=base_url()?>/assets/datatables/datatables.min.css"/>
         
     </head>
     <body class="sb-nav-fixed">
@@ -56,22 +57,36 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-table me-1"></i>
+                                    Daftar Dosen dan Jumlah Proposal
                                 </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body">
+                                    <?= session()->getFlashdata('notif')?>
+                                    <table id="dataTable" class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%">No.</th>
+                                                <th>Nama</th>
+                                                <th>NIP</th>
+                                                <th>Jumlah Proposal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $c = 1 ?>
+                                            <?php foreach ($l_dosen as $a) {?>
+                                                <tr>
+                                                    <td><?=$c?></td>
+                                                    <td><?=$a->nama_lengkap?></td>
+                                                    <td><?=$a->nip?></td>
+                                                    <td><?=$a->jumlah_proposal?></td>
+                                                </tr>
+                                            <?php $c++; ?>
+                                            <?php }?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -93,6 +108,9 @@
         </div>
         
         <?= $this->include('admin/partials/partial-footer') ?>
-
+        <script type="text/javascript" src="<?=base_url()?>/assets/datatables/datatables.min.js"></script>
+        <script type="text/javascript">
+            $('#dataTable').DataTable();
+        </script>
     </body>
 </html>

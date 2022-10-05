@@ -177,4 +177,17 @@ class Dokumen extends Controller
 			echo view('dosen/surat/part-surat-mod-revisi', $data);
 		}
 	}
+
+	public function detail_surat()
+	{
+		if ($_POST['rowid']) {
+			$id = $_POST['rowid'];
+			
+			$surat = $this->m_surat->getSuratById($id)[0];
+			$data = [
+				'a' => $surat
+			];
+			echo view('dosen/surat/part-surat-mod-detail', $data);
+		}
+	}
 }

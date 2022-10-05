@@ -24,7 +24,7 @@ class Dokumen extends Controller
 
 		$dataset = [
 			'title' => 'List Surat',
-			'usertype' => 'Dosen',
+			'usertype' => 'Dekan',
 			'duser' => $this->account,
 			'list_surat' => $list_surat
 		];
@@ -38,7 +38,7 @@ class Dokumen extends Controller
 		
 		$dataset = [
 			'title' => 'Detail Dokumen',
-			'usertype' => 'Dosen',
+			'usertype' => 'Dekan',
 			'duser' => $this->account,
 			'detail_surat' => $detail_surat
 		];

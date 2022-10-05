@@ -43,6 +43,17 @@ $routes->post('login-auth', 'Login::login_proc');
 $routes->group('admin', static function ($routes)
 {
     $routes->get('dashboard', 'Admin\Dashboard::index');
+    $routes->get('kategori', 'Admin\Kategori::index');
+    $routes->get('dokumen', 'Admin\Dokumen::index');
+    
+    $routes->post('kategori/add-kategori', 'Admin\Kategori::add_proc');
+    $routes->post('kategori/edit-kategori-proc/(:num)', 'Admin\Kategori::edit_proc/$1', ['as' => 'admin_edit_kategori']);
+
+    $routes->add('kategori/switch-kategori', 'Admin\Kategori::konfirSwitch');
+    $routes->add('kategori/edit-kategori', 'Admin\Kategori::editKategori');
+    $routes->add('kategori/switch-kategori-confirm/(:num)', 'Admin\Kategori::flag_switch/$1', ['as' => 'admin_switch_kategori']);
+    $routes->add('dokumen/sign/(:num)', 'Admin\Dokumen::sign_document/$1', ['as' => 'admin_ttd_dokumen']);
+    $routes->add('dokumen/(:num)', 'Admin\Dokumen::detail/$1', ['as' => 'admin_detail_dokumen']);
 });
 
 $routes->group('dekan', static function ($routes)
@@ -62,6 +73,8 @@ $routes->group('dosen', static function ($routes)
 
     $routes->post('dokumen/add-req', 'Dosen\Dokumen::add_proc');
     $routes->post('dokumen/revisi-req', 'Dosen\Dokumen::revisi_proc');
+
+    $routes->add('dokumen/detail-surat', 'Dosen\Dokumen::detail_surat');
     $routes->add('dokumen/revisi-update', 'Dosen\Dokumen::revisi_update');
 });
 
