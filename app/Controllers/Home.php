@@ -8,4 +8,14 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+
+    public function dashboard()
+    {
+
+        $dataset = [
+            'title' => 'Dashboard - Admin'
+        ];
+        
+        return view('dashboard', $dataset);
+    }
 }
