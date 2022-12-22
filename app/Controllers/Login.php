@@ -21,6 +21,15 @@ class login extends Controller
 
 		return view('login-page', $dataset);
 	}
+	
+	public function index2()
+	{
+		$dataset = [
+			'title' => 'Login - SB Admin'
+		];
+
+		return view('login-page', $dataset);
+	}
 
 	public function login_proc()
 	{

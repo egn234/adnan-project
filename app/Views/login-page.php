@@ -7,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title><?=$title?></title>
-        <link href="<?=base_url()?>/assets/css/styles.css" rel="stylesheet" />
+        <link href="<?=base_url()?>public/assets/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
@@ -26,6 +26,7 @@
                                                 <input class="form-control" id="inputUsername" type="text" name="username" placeholder="username" />
                                                 <label for="inputUsername">Username</label>
                                             </div>
+                                            <?=base_url()?>
                                             <div class="d-flex align-items-center justify-content-end mt-4 mb-0">
                                                 <button type="submit" class="btn btn-primary" >Login</a>
                                             </div>

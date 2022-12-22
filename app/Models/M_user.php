@@ -21,8 +21,6 @@ class m_user extends Model
 
     protected $validationRules    = [];
     protected $validationMessages = [];
-    protected $skipValidation     = false;
-
 
     function __construct()
     {
@@ -99,4 +97,41 @@ class m_user extends Model
     	$sql = "SELECT count(iduser) as hitung FROM tb_user WHERE username = '$username'";
     	return $this->db->query($sql)->getResult();
     }
+    
+    function getAllDosen()
+    {
+    	$sql = "
+            SELECT * FROM tb_user 
+            WHERE idgroup = 3
+        ";
+    	
+    	return $this->db->query($sql)->getResult();
+    }
+    
+    function insertUser($data)
+    {
+        $builder = $this->db->table('tb_user');
+        $builder->insert($data);
+    }
+    
+    function getDosenById($iduser)
+    {
+        $sql = "SELECT * FROM tb_user WHERE iduser = $iduser";
+        return $this->db->query($sql)->getResult();
+    }
+    
+    function updateDosen($iduser, $data)
+    {
+        $builder = $this->db->table('tb_user');
+        $builder->where('iduser', $iduser);
+        $builder->update($data);
+    }
+    
+    function deleteUser($iduser)
+    {
+        $builder = $this->db->table('tb_user');
+        $builder->where('iduser', $iduser);
+        $builder->delete();
+    }
+    
 }
